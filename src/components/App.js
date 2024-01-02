@@ -1,17 +1,20 @@
 import { useEffect, useState, useContext } from "react";
-import "./App.css";
-import EndScreen from "./components/EndScreen";
-import MainMenu from "./components/MainMenu";
-import Quiz from "./components/Quiz";
-import { QuizContext } from "./components/Context";
+
+import EndScreen from "./EndScreen";
+import MainMenu from "./MainMenu";
+import Quiz from "./Quiz";
+import { QuizContext } from "./Context";
 function App() {
   let [gameState, setGameState] = useState("menu");
+  let [score, setScore] = useState(0);
 
   return (
     <div className="App">
       <h1>Quiz App</h1>
-      {gameState}
-      <QuizContext.Provider value={{ gameState, setGameState }}>
+
+      <QuizContext.Provider
+        value={{ gameState, setGameState, score, setScore }}
+      >
         {gameState == "menu" ? <MainMenu /> : null}
         {gameState == "quiz" ? <Quiz /> : null}
         {gameState == "endScreen" ? <EndScreen /> : null}
